@@ -1,0 +1,117 @@
+{
+  "_comment": "Who holds league rights where, 2026-27 season. Edit ~/.config/grivera-matchday/broadcasters.json to override or add countries; it is merged over this file. 'verified': false marks entries I could not confirm against a 2026-27 source.",
+  "season": "2026-27",
+
+  "services": {
+    "peacock":      { "name": "Peacock",            "url": "https://www.peacocktv.com/sports/premier-league", "color": "#f5c518", "kind": "stream" },
+    "nbc":          { "name": "NBC",                "url": "https://www.nbcsports.com/soccer",                "color": "#6460aa", "kind": "tv" },
+    "usa":          { "name": "USA Network",        "url": "https://www.usanetwork.com/live",                 "color": "#1a73e8", "kind": "tv" },
+    "telemundo":    { "name": "Telemundo",          "url": "https://www.telemundo.com/deportes",              "color": "#e6007e", "kind": "tv", "lang": "es" },
+    "universo":     { "name": "Universo",           "url": "https://www.telemundo.com/deportes",              "color": "#ff6a00", "kind": "tv", "lang": "es" },
+    "espnplus":     { "name": "ESPN+",              "url": "https://www.espn.com/watch/",                     "color": "#ffb700", "kind": "stream" },
+    "espn":         { "name": "ESPN",               "url": "https://www.espn.com/watch/",                     "color": "#d00000", "kind": "tv" },
+    "espndeportes": { "name": "ESPN Deportes",      "url": "https://espndeportes.espn.com/",                  "color": "#d00000", "kind": "tv", "lang": "es" },
+    "abc":          { "name": "ABC",                "url": "https://abc.com/",                                "color": "#9aa0a6", "kind": "tv" },
+    "paramount":    { "name": "Paramount+",         "url": "https://www.paramountplus.com/shows/serie-a/",    "color": "#0064ff", "kind": "stream" },
+    "cbs":          { "name": "CBS",                "url": "https://www.cbssports.com/watch/",                "color": "#2f6cdf", "kind": "tv" },
+    "cbssn":        { "name": "CBS Sports Network", "url": "https://www.cbssports.com/watch/",                "color": "#2f6cdf", "kind": "tv" },
+    "golazo":       { "name": "CBS Sports Golazo",  "url": "https://www.cbssports.com/watch/golazo-network",  "color": "#25c26e", "kind": "free" },
+    "appletv":      { "name": "Apple TV",           "url": "https://tv.apple.com/channel/mls",                "color": "#a2aaad", "kind": "stream" },
+    "fox":          { "name": "FOX",                "url": "https://www.foxsports.com/live",                  "color": "#1e90ff", "kind": "tv" },
+    "fs1":          { "name": "FS1",                "url": "https://www.foxsports.com/live",                  "color": "#1e90ff", "kind": "tv" },
+    "foxdeportes":  { "name": "FOX Deportes",       "url": "https://www.foxdeportes.com/",                    "color": "#1e90ff", "kind": "tv", "lang": "es" },
+    "tudn":         { "name": "TUDN",               "url": "https://www.tudn.com/",                           "color": "#00b140", "kind": "tv", "lang": "es" },
+    "univision":    { "name": "Univision",          "url": "https://www.univision.com/",                      "color": "#00b140", "kind": "tv", "lang": "es" },
+    "unimas":       { "name": "UniMás",             "url": "https://www.univision.com/",                      "color": "#00b140", "kind": "tv", "lang": "es" },
+    "fubo":         { "name": "Fubo",               "url": "https://www.fubo.tv/",                            "color": "#fa4616", "kind": "stream" },
+    "tsn":          { "name": "TSN",                "url": "https://www.tsn.ca/live",                         "color": "#d40000", "kind": "tv" },
+    "rds":          { "name": "RDS",                "url": "https://www.rds.ca/",                             "color": "#d40000", "kind": "tv", "lang": "fr" },
+    "skysports":    { "name": "Sky Sports",         "url": "https://www.skysports.com/watch",                 "color": "#e10600", "kind": "tv" },
+    "tnt":          { "name": "TNT Sports",         "url": "https://www.tntsports.co.uk/",                    "color": "#00c7b1", "kind": "tv" },
+    "premiersports":{ "name": "Premier Sports",     "url": "https://www.premiersports.com/",                  "color": "#00a0e3", "kind": "tv" },
+    "disneyplus":   { "name": "Disney+",            "url": "https://www.disneyplus.com/",                     "color": "#113ccf", "kind": "stream" },
+    "dazn":         { "name": "DAZN",               "url": "https://www.dazn.com/",                           "color": "#f7ff1a", "kind": "stream" },
+    "movistar":     { "name": "Movistar Plus+",     "url": "https://www.movistarplus.es/",                    "color": "#019df4", "kind": "tv", "lang": "es" },
+    "skyitalia":    { "name": "Sky Sport",          "url": "https://sport.sky.it/",                           "color": "#e10600", "kind": "tv", "lang": "it" },
+    "skymx":        { "name": "Sky Sports (Sky+)",  "url": "https://www.sky.com.mx/",                         "color": "#e10600", "kind": "tv", "lang": "es" },
+    "canal5":       { "name": "Canal 5",            "url": "https://www.televisa.com/canal5",                 "color": "#ffcc00", "kind": "free", "lang": "es" },
+    "foxmx":        { "name": "FOX (México)",       "url": "https://www.foxsports.com.mx/",                   "color": "#1e90ff", "kind": "tv", "lang": "es" },
+    "espnlatam":    { "name": "ESPN / Disney+",     "url": "https://www.disneyplus.com/",                     "color": "#d00000", "kind": "stream", "lang": "es" }
+  },
+
+  "countries": {
+    "US": {
+      "name": "United States",
+      "eng.1": ["peacock", "usa", "nbc", "telemundo", "universo"],
+      "esp.1": ["espnplus", "espn", "espndeportes"],
+      "ita.1": ["paramount", "cbs", "golazo"],
+      "usa.1": ["appletv", "fox", "fs1", "foxdeportes"]
+    },
+    "CA": {
+      "name": "Canada",
+      "eng.1": ["fubo"],
+      "esp.1": ["tsn", "rds"],
+      "ita.1": ["fubo"],
+      "usa.1": ["appletv", "tsn", "rds"]
+    },
+    "MX": {
+      "name": "Mexico",
+      "eng.1": ["foxmx"],
+      "esp.1": ["skymx", "canal5"],
+      "ita.1": { "services": ["espnlatam"], "verified": false },
+      "usa.1": ["appletv"]
+    },
+    "GB": {
+      "name": "United Kingdom",
+      "eng.1": ["skysports", "tnt"],
+      "esp.1": ["premiersports", "disneyplus"],
+      "ita.1": ["tnt"],
+      "usa.1": ["appletv"]
+    },
+    "IE": {
+      "name": "Ireland",
+      "eng.1": { "services": ["skysports", "tnt"], "verified": false },
+      "esp.1": ["premiersports", "disneyplus"],
+      "ita.1": ["tnt"],
+      "usa.1": ["appletv"]
+    },
+    "ES": {
+      "name": "Spain",
+      "eng.1": ["dazn"],
+      "esp.1": ["movistar", "dazn"],
+      "ita.1": { "services": ["dazn"], "verified": false },
+      "usa.1": ["appletv"]
+    },
+    "IT": {
+      "name": "Italy",
+      "eng.1": ["skyitalia"],
+      "esp.1": ["dazn"],
+      "ita.1": ["dazn", "skyitalia"],
+      "usa.1": ["appletv"]
+    }
+  },
+
+  "_everywhere": "Apple TV carries every MLS match worldwide.",
+  "everywhere": {
+    "usa.1": ["appletv"]
+  },
+
+  "espnAliases": {
+    "usa net": "usa", "usa network": "usa", "usa": "usa",
+    "tele": "telemundo", "telemundo": "telemundo",
+    "universo": "universo", "uni": "universo",
+    "pea": "peacock", "peacock": "peacock", "peacock premium": "peacock",
+    "nbc": "nbc",
+    "espn+": "espnplus", "espn plus": "espnplus",
+    "espn": "espn", "espn2": "espn", "espnu": "espn",
+    "espn deportes": "espndeportes", "espn dep": "espndeportes", "espn deportes+": "espndeportes",
+    "abc": "abc",
+    "paramount+": "paramount", "paramount plus": "paramount",
+    "cbs": "cbs", "cbssn": "cbssn", "cbs sports network": "cbssn",
+    "golazo": "golazo", "cbs sports golazo": "golazo", "cbs sports golazo network": "golazo",
+    "apple tv": "appletv", "apple tv+": "appletv", "mls season pass": "appletv",
+    "fox": "fox", "fs1": "fs1", "fs2": "fs1", "fox deportes": "foxdeportes",
+    "tudn": "tudn", "univision": "univision", "unimas": "unimas",
+    "fubo": "fubo", "disney+": "disneyplus"
+  }
+}
