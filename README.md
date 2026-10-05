@@ -4,6 +4,8 @@ Omarchy bar widget for **LaLiga, Serie A, the Premier League and MLS**. You can
 follow your clubs and see live scores, fixtures and league tables. For every match
 it shows **where to watch it from where you are**.
 
+![Matchday: Following, Matches and Tables tabs](preview.png)
+
 ## Install
 
 Use Omarchy's plugin manager:
