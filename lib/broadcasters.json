@@ -1,5 +1,5 @@
 {
-  "_comment": "Who holds league rights where, 2026-27 season. Edit ~/.config/grivera-matchday/broadcasters.json to override or add countries; it is merged over this file. 'verified': false marks entries I could not confirm against a 2026-27 source.",
+  "_comment": "Who holds league rights where, 2026-27 season. A league entry can be a list, or an object with 'services' plus 'teams' (ESPN abbreviation -> services) for national-team rights that follow who's playing. Edit ~/.config/grivera-matchday/broadcasters.json to override or add countries; it is merged over this file. 'verified': false marks entries I could not confirm against a 2026-27 source.",
   "season": "2026-27",
 
   "services": {
@@ -24,6 +24,17 @@
     "univision":    { "name": "Univision",          "url": "https://www.univision.com/",                      "color": "#00b140", "kind": "tv", "lang": "es" },
     "unimas":       { "name": "UniMás",             "url": "https://www.univision.com/",                      "color": "#00b140", "kind": "tv", "lang": "es" },
     "fubo":         { "name": "Fubo",               "url": "https://www.fubo.tv/",                            "color": "#fa4616", "kind": "stream" },
+    "fs2":          { "name": "FS2",                "url": "https://www.foxsports.com/live",                  "color": "#1e90ff", "kind": "tv" },
+    "vix":          { "name": "ViX",                "url": "https://vix.com/",                                "color": "#ff5a00", "kind": "stream", "lang": "es" },
+    "itv":          { "name": "ITV1 / ITVX",        "url": "https://www.itv.com/watch",                       "color": "#c3f53c", "kind": "free" },
+    "bbc":          { "name": "BBC iPlayer",        "url": "https://www.bbc.co.uk/iplayer",                   "color": "#ff4c98", "kind": "free" },
+    "s4c":          { "name": "S4C",                "url": "https://www.s4c.cymru/clic/",                     "color": "#ff6a13", "kind": "free", "lang": "cy" },
+    "primevideo":   { "name": "Prime Video",        "url": "https://www.primevideo.com/",                     "color": "#1399ff", "kind": "stream" },
+    "rte":          { "name": "RTÉ 2 / RTÉ Player", "url": "https://www.rte.ie/player/",                      "color": "#0080c6", "kind": "free" },
+    "virginmedia":  { "name": "Virgin Media",       "url": "https://www.virginmediatelevision.ie/",           "color": "#e10a0a", "kind": "tv" },
+    "rtve":         { "name": "La 1 / RTVE Play",   "url": "https://www.rtve.es/play/",                       "color": "#e2001a", "kind": "free", "lang": "es" },
+    "rai":          { "name": "Rai 1 / RaiPlay",    "url": "https://www.raiplay.it/",                         "color": "#0a5bd3", "kind": "free", "lang": "it" },
+    "mediaset":     { "name": "Mediaset Infinity",  "url": "https://mediasetinfinity.mediaset.it/",           "color": "#1f74ff", "kind": "free", "lang": "it" },
     "tsn":          { "name": "TSN",                "url": "https://www.tsn.ca/live",                         "color": "#d40000", "kind": "tv" },
     "rds":          { "name": "RDS",                "url": "https://www.rds.ca/",                             "color": "#d40000", "kind": "tv", "lang": "fr" },
     "skysports":    { "name": "Sky Sports",         "url": "https://www.skysports.com/watch",                 "color": "#e10600", "kind": "tv" },
@@ -45,49 +56,56 @@
       "eng.1": ["peacock", "usa", "nbc", "telemundo", "universo"],
       "esp.1": ["espnplus", "espn", "espndeportes"],
       "ita.1": ["paramount", "cbs", "golazo"],
-      "usa.1": ["appletv", "fox", "fs1", "foxdeportes"]
+      "usa.1": ["appletv", "fox", "fs1", "foxdeportes"],
+      "uefa.nations": ["fox", "fs1", "fs2", "fubo", "tudn", "univision", "vix"]
     },
     "CA": {
       "name": "Canada",
       "eng.1": ["fubo"],
       "esp.1": ["tsn", "rds"],
       "ita.1": ["fubo"],
-      "usa.1": ["appletv", "tsn", "rds"]
+      "usa.1": ["appletv", "tsn", "rds"],
+      "uefa.nations": ["dazn"]
     },
     "MX": {
       "name": "Mexico",
       "eng.1": ["foxmx"],
       "esp.1": ["skymx", "canal5"],
       "ita.1": { "services": ["espnlatam"], "verified": false },
-      "usa.1": ["appletv"]
+      "usa.1": ["appletv"],
+      "uefa.nations": ["skymx"]
     },
     "GB": {
       "name": "United Kingdom",
       "eng.1": ["skysports", "tnt"],
       "esp.1": ["premiersports", "disneyplus"],
       "ita.1": ["tnt"],
-      "usa.1": ["appletv"]
+      "usa.1": ["appletv"],
+      "uefa.nations": { "services": ["primevideo"], "teams": { "ENG": ["itv"], "SCO": ["bbc"], "NIR": ["bbc"], "WAL": ["s4c"] } }
     },
     "IE": {
       "name": "Ireland",
       "eng.1": { "services": ["skysports", "tnt"], "verified": false },
       "esp.1": ["premiersports", "disneyplus"],
       "ita.1": ["tnt"],
-      "usa.1": ["appletv"]
+      "usa.1": ["appletv"],
+      "uefa.nations": { "services": ["virginmedia"], "teams": { "IRL": ["rte"] } }
     },
     "ES": {
       "name": "Spain",
       "eng.1": ["dazn"],
       "esp.1": ["movistar", "dazn"],
       "ita.1": { "services": ["dazn"], "verified": false },
-      "usa.1": ["appletv"]
+      "usa.1": ["appletv"],
+      "uefa.nations": { "services": ["dazn"], "teams": { "ESP": ["rtve", "dazn"] } }
     },
     "IT": {
       "name": "Italy",
       "eng.1": ["skyitalia"],
       "esp.1": ["dazn"],
       "ita.1": ["dazn", "skyitalia"],
-      "usa.1": ["appletv"]
+      "usa.1": ["appletv"],
+      "uefa.nations": ["rai", "mediaset", "skyitalia"]
     }
   },
 
@@ -110,7 +128,7 @@
     "cbs": "cbs", "cbssn": "cbssn", "cbs sports network": "cbssn",
     "golazo": "golazo", "cbs sports golazo": "golazo", "cbs sports golazo network": "golazo",
     "apple tv": "appletv", "apple tv+": "appletv", "mls season pass": "appletv",
-    "fox": "fox", "fs1": "fs1", "fs2": "fs1", "fox deportes": "foxdeportes",
+    "fox": "fox", "fs1": "fs1", "fs2": "fs2", "fox deportes": "foxdeportes", "vix": "vix", "vix premium": "vix",
     "tudn": "tudn", "univision": "univision", "unimas": "unimas",
     "fubo": "fubo", "disney+": "disneyplus"
   }

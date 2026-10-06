@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Fixtures, live scores, tables and where-to-watch for the grivera.matchday
-Omarchy plugin. Covers LaLiga, Serie A, the Premier League and MLS.
+Omarchy plugin. Covers LaLiga, Serie A, the Premier League, MLS and the UEFA
+Nations League.
 
 Data comes from ESPN's public site API (no key). "Where to watch" uses ESPN's
 per-match US listings when they exist and otherwise a per-country rights table
@@ -48,6 +49,8 @@ LEAGUES = [
     {"id": "ita.1", "name": "Serie A", "short": "Serie A", "country": "Italy", "color": "#1aa0e8", "logoId": "12"},
     {"id": "eng.1", "name": "Premier League", "short": "Premier", "country": "England", "color": "#a26bfa", "logoId": "23"},
     {"id": "usa.1", "name": "MLS", "short": "MLS", "country": "USA & Canada", "color": "#36c46f", "logoId": "19"},
+    {"id": "uefa.nations", "name": "UEFA Nations League", "short": "Nations", "country": "Europe", "color": "#f2b705",
+     "logoId": "2395", "national": True},
 ]
 LEAGUE_BY_ID = {l["id"]: l for l in LEAGUES}
 
@@ -192,7 +195,11 @@ def where_to_watch(ev, country, config, rights):
             entry = (rights.get("everywhere") or {}).get(league)
         if isinstance(entry, dict):
             verified = entry.get("verified", True)
-            entry = entry.get("services") or []
+            # National-team rights often follow who's playing: England on ITV,
+            # Scotland on BBC, everyone else on the league-wide holder.
+            by_team = entry.get("teams") or {}
+            picked = [sid for side in ("home", "away") for sid in by_team.get(ev[side]["abbr"], [])]
+            entry = picked or entry.get("services") or []
         services = [service(rights, s) for s in entry or []]
     if not config.get("spanish", True):
         kept = [s for s in services if s.get("lang") != "es"]
@@ -594,6 +601,7 @@ class Engine:
         self.emit = emit
         self.store = Store()
         self.config = dict(DEFAULT_CONFIG, **load_json(CONFIG_FILE, {}))
+        self.add_new_leagues()
         self.location = detect_location()
         self.rights = load_rights()
         self.notifier = Notifier()
@@ -606,6 +614,20 @@ class Engine:
 
     def save_config(self):
         save_json(CONFIG_FILE, self.config, indent=2)
+
+    def add_new_leagues(self):
+        """Turn on leagues added in an update. Configs from before `leaguesSeen`
+        existed knew the original four."""
+        seen = self.config.get("leaguesSeen") or ["esp.1", "ita.1", "eng.1", "usa.1"]
+        new = [l["id"] for l in LEAGUES if l["id"] not in seen]
+        if not new and "leaguesSeen" in self.config:
+            return
+        self.config["leagues"] = list(self.config["leagues"]) + [l for l in new if l not in self.config["leagues"]]
+        self.config["leaguesSeen"] = [l["id"] for l in LEAGUES]
+        try:
+            self.save_config()
+        except OSError:
+            pass
 
     def country(self):
         c = self.config.get("country") or "auto"
@@ -740,6 +762,8 @@ class Engine:
                 for r in g["rows"]:
                     self.dress(r)
                     r["fav"] = self.is_fav(league, r["id"])
+            # Nations League has 14 groups; show the ones you follow first.
+            groups.sort(key=lambda g: not any(r["fav"] for r in g["rows"]))
             out[league] = groups
         return out
 
@@ -801,6 +825,10 @@ class Engine:
                 "form": form,
                 "standing": standing.get((f["league"], f["id"])),
             })
+        # Soonest first: live matches, then by kickoff; teams with nothing
+        # scheduled go last. Ties keep the order you followed them in.
+        favorites.sort(key=lambda f: (0, f["live"]["ts"]) if f["live"]
+                       else (1, f["next"]["ts"]) if f["next"] else (2, 0))
 
         today = local_today()
         start = datetime.datetime.combine(today - datetime.timedelta(days=DAYS_BACK), datetime.time()).timestamp()

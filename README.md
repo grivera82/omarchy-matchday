@@ -1,8 +1,9 @@
 # Matchday (grivera.matchday)
 
-Omarchy bar widget for **LaLiga, Serie A, the Premier League and MLS**. You can
-follow your clubs and see live scores, fixtures and league tables. For every match
-it shows **where to watch it from where you are**.
+Omarchy bar widget for **LaLiga, Serie A, the Premier League, MLS and the UEFA
+Nations League**. You can follow your clubs and national teams and see live scores,
+fixtures and league tables. For every match it shows **where to watch it from where
+you are**.
 
 ![Matchday: Following, Matches and Tables tabs](preview.png)
 
@@ -62,7 +63,7 @@ to it.
 |---|---|
 | **Following** | One card per club: crest, league position, points, last-five form, then the next match (or the live one) with countdown, venue, **where to watch**, last result and the match after. Live cards show the score, minute, goals and red cards. Other live games appear underneath. |
 | **Matches** | Every game over the next 10 days and the last 3, grouped by day, filtered by All / ★ Mine / league. Each row shows its channels. Click a row to open it on ESPN. |
-| **Tables** | Standings with European and relegation zones (MLS split by conference). Click a club to follow or unfollow it. |
+| **Tables** | Standings with European and relegation zones (MLS split by conference, Nations League by its 14 groups, with the groups you follow first). Click a team to follow or unfollow it. |
 | **Teams** | Crest grid for picking your clubs, plus settings. |
 
 Keys: `1`–`4` switch tabs, `h`/`l` cycle the league filter, `j`/`k` scroll, `r`
@@ -80,6 +81,10 @@ States). You can override it under **Teams → Settings → Watching from**.
   `lib/broadcasters.json`. Built in: US, Canada, Mexico, UK, Ireland, Spain, Italy.
   Apple TV carries MLS worldwide. Entries I couldn't confirm against a 2026-27
   source are labelled *unconfirmed*.
+- **Nations League**: national-team rights follow who's playing. In the UK,
+  England is on ITV, Scotland and Northern Ireland on BBC iPlayer, Wales on S4C
+  and everything else on Prime Video. Ireland's matches are on RTÉ, Spain's on
+  RTVE. These come from UEFA's 2026/27 broadcaster list.
 
 Click a channel pill to open that service. You can hide Spanish-language channels
 (Telemundo, Universo, ESPN Deportes, FOX Deportes and others) with the toggle.
@@ -92,6 +97,16 @@ table, then press Refresh:
 {
   "services": { "dazn-de": { "name": "DAZN", "url": "https://www.dazn.com/", "color": "#f7ff1a", "kind": "stream" } },
   "countries": { "DE": { "name": "Germany", "esp.1": ["dazn-de"], "ita.1": ["dazn-de"] } }
+}
+```
+
+For national-team rights that depend on who's playing, give a league an object
+with `services` (everyone else) and `teams` (ESPN team abbreviation → services):
+
+```json
+{
+  "services": { "ard": { "name": "ARD / ZDF", "url": "https://www.ardmediathek.de/", "color": "#0a3b7c", "kind": "free" } },
+  "countries": { "DE": { "name": "Germany", "uefa.nations": { "services": ["dazn-de"], "teams": { "GER": ["ard"] } } } }
 }
 ```
 

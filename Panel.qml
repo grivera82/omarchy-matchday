@@ -410,7 +410,7 @@ Panel {
             width: parent.width
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap
-            text: "Pick the clubs you care about. Matchday tracks their games, tells you which channel has them where you are, and nudges you before kickoff."
+            text: "Pick the clubs and national teams you care about. Matchday tracks their games, tells you which channel has them where you are, and nudges you before kickoff."
             color: root.dim
             font.family: root.fontFamily
             font.pixelSize: Style.font.body
@@ -610,7 +610,7 @@ Panel {
             width: parent.width
             height: Style.space(20)
             Text { x: Style.space(8); anchors.verticalCenter: parent.verticalCenter; text: "#"; color: root.dim; font.family: root.fontFamily; font.pixelSize: Style.font.caption }
-            Text { x: Style.space(56); anchors.verticalCenter: parent.verticalCenter; text: "CLUB"; color: root.dim; font.family: root.fontFamily; font.pixelSize: Style.font.caption; font.letterSpacing: 1 }
+            Text { x: Style.space(56); anchors.verticalCenter: parent.verticalCenter; text: root.league(root.tableLeague).national ? "TEAM" : "CLUB"; color: root.dim; font.family: root.fontFamily; font.pixelSize: Style.font.caption; font.letterSpacing: 1 }
             Row {
               anchors.right: parent.right
               anchors.rightMargin: Style.space(6)
@@ -741,7 +741,7 @@ Panel {
       Text {
         width: parent.width
         topPadding: Style.space(2)
-        text: "Click a club to follow or unfollow it."
+        text: "Click a " + (root.league(root.tableLeague).national ? "team" : "club") + " to follow or unfollow it."
         color: root.dim
         font.family: root.fontFamily
         font.pixelSize: Style.font.caption
@@ -774,7 +774,7 @@ Panel {
         visible: teamsCol.teams.length === 0
         width: parent.width
         horizontalAlignment: Text.AlignHCenter
-        text: "Loading clubs…"
+        text: root.league(root.teamsLeague).national ? "Loading teams…" : "Loading clubs…"
         color: root.dim
         font.family: root.fontFamily
         font.pixelSize: Style.font.body

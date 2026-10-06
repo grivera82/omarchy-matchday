@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "id": "grivera.matchday",
   "name": "Matchday",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "grivera",
   "license": "MIT",
-  "description": "LaLiga, Serie A, Premier League and MLS: follow your teams, live scores, tables, and where to watch each match from where you are",
+  "description": "LaLiga, Serie A, Premier League, MLS and the UEFA Nations League: follow your teams, live scores, tables, and where to watch each match from where you are",
   "kinds": [
     "service",
     "bar-widget"
