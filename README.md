@@ -1,4 +1,4 @@
-# Matchday (grivera.matchday)
+# <img src="icon.svg" width="44" height="44" alt=""> Matchday (grivera.matchday)
 
 Omarchy bar widget for **LaLiga, Serie A, the Premier League, MLS and the UEFA
 Nations League and Champions League**. You can follow your clubs and national teams and see live scores,
