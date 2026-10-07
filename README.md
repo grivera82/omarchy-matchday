@@ -1,9 +1,9 @@
 # <img src="icon.svg" width="44" height="44" alt=""> Matchday (grivera.matchday)
 
-Omarchy bar widget for **LaLiga, Serie A, the Premier League, MLS and the UEFA
-Nations League and Champions League**. You can follow your clubs and national teams and see live scores,
-fixtures and league tables. For every match it shows **where to watch it from where
-you are**.
+A **soccer plugin for the Omarchy bar**: live scores, fixtures, standings and
+**where to watch each match in your country**. Follow your clubs and national
+teams across **LaLiga, Serie A, Premier League, MLS, UEFA Nations League and
+Champions League**.
 
 ![Matchday: Following, Matches and Tables tabs](preview.png)
 

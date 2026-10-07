@@ -5,7 +5,7 @@
   "version": "1.2.0",
   "author": "grivera",
   "license": "MIT",
-  "description": "LaLiga, Serie A, Premier League, MLS, UEFA Nations League and Champions League: follow your teams, live scores, tables, and where to watch each match from where you are",
+  "description": "Soccer scores, fixtures, standings and where to watch in your Omarchy bar. Follow teams in LaLiga, Serie A, Premier League, MLS, UEFA Nations League and Champions League.",
   "kinds": [
     "service",
     "bar-widget"
@@ -16,7 +16,7 @@
   },
   "barWidget": {
     "displayName": "Matchday",
-    "description": "Fixtures, live scores and where to watch",
+    "description": "Soccer fixtures, live scores and where to watch",
     "category": "Sports",
     "allowMultiple": false,
     "defaultSection": "right"
