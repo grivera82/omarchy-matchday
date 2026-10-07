@@ -1,8 +1,11 @@
 {
   "_comment": "Who holds league rights where, 2026-27 season. A league entry can be a list, or an object with 'services' plus 'teams' (ESPN abbreviation -> services) for national-team rights that follow who's playing. Edit ~/.config/grivera-matchday/broadcasters.json to override or add countries; it is merged over this file. 'verified': false marks entries I could not confirm against a 2026-27 source.",
   "season": "2026-27",
+  "_championsSource": "https://www.uefa.com/uefachampionsleague/news/0253-0d82037aaedd-f371c464f919-1000--where-to-watch-the-champions-league-tv-broadcast-partners-live-streams/ (2026/27, checked 2026-10-06; highlights-only partners excluded)",
 
   "services": {
+    "maxmx": { "name": "HBO Max", "url": "https://www.hbomax.com/mx/es", "color": "#6b35ff", "kind": "stream", "lang": "es" },
+    "onesoccer": { "name": "OneSoccer", "url": "https://onesoccer.ca/", "color": "#e5252a", "kind": "stream" },
     "peacock":      { "name": "Peacock",            "url": "https://www.peacocktv.com/sports/premier-league", "color": "#f5c518", "kind": "stream" },
     "nbc":          { "name": "NBC",                "url": "https://www.nbcsports.com/soccer",                "color": "#6460aa", "kind": "tv" },
     "usa":          { "name": "USA Network",        "url": "https://www.usanetwork.com/live",                 "color": "#1a73e8", "kind": "tv" },
@@ -12,7 +15,7 @@
     "espn":         { "name": "ESPN",               "url": "https://www.espn.com/watch/",                     "color": "#d00000", "kind": "tv" },
     "espndeportes": { "name": "ESPN Deportes",      "url": "https://espndeportes.espn.com/",                  "color": "#d00000", "kind": "tv", "lang": "es" },
     "abc":          { "name": "ABC",                "url": "https://abc.com/",                                "color": "#9aa0a6", "kind": "tv" },
-    "paramount":    { "name": "Paramount+",         "url": "https://www.paramountplus.com/shows/serie-a/",    "color": "#0064ff", "kind": "stream" },
+    "paramount":    { "name": "Paramount+",         "url": "https://www.paramountplus.com/sports/",    "color": "#0064ff", "kind": "stream" },
     "cbs":          { "name": "CBS",                "url": "https://www.cbssports.com/watch/",                "color": "#2f6cdf", "kind": "tv" },
     "cbssn":        { "name": "CBS Sports Network", "url": "https://www.cbssports.com/watch/",                "color": "#2f6cdf", "kind": "tv" },
     "golazo":       { "name": "CBS Sports Golazo",  "url": "https://www.cbssports.com/watch/golazo-network",  "color": "#25c26e", "kind": "free" },
@@ -57,6 +60,7 @@
       "esp.1": ["espnplus", "espn", "espndeportes"],
       "ita.1": ["paramount", "cbs", "golazo"],
       "usa.1": ["appletv", "fox", "fs1", "foxdeportes"],
+      "uefa.champions": ["paramount", "tudn", "dazn"],
       "uefa.nations": ["fox", "fs1", "fs2", "fubo", "tudn", "univision", "vix"]
     },
     "CA": {
@@ -65,6 +69,7 @@
       "esp.1": ["tsn", "rds"],
       "ita.1": ["fubo"],
       "usa.1": ["appletv", "tsn", "rds"],
+      "uefa.champions": ["dazn", "onesoccer"],
       "uefa.nations": ["dazn"]
     },
     "MX": {
@@ -73,6 +78,7 @@
       "esp.1": ["skymx", "canal5"],
       "ita.1": { "services": ["espnlatam"], "verified": false },
       "usa.1": ["appletv"],
+      "uefa.champions": ["maxmx", "foxmx"],
       "uefa.nations": ["skymx"]
     },
     "GB": {
@@ -81,6 +87,7 @@
       "esp.1": ["premiersports", "disneyplus"],
       "ita.1": ["tnt"],
       "usa.1": ["appletv"],
+      "uefa.champions": ["tnt", "primevideo"],
       "uefa.nations": { "services": ["primevideo"], "teams": { "ENG": ["itv"], "SCO": ["bbc"], "NIR": ["bbc"], "WAL": ["s4c"] } }
     },
     "IE": {
@@ -89,6 +96,7 @@
       "esp.1": ["premiersports", "disneyplus"],
       "ita.1": ["tnt"],
       "usa.1": ["appletv"],
+      "uefa.champions": ["rte", "premiersports", "virginmedia"],
       "uefa.nations": { "services": ["virginmedia"], "teams": { "IRL": ["rte"] } }
     },
     "ES": {
@@ -97,6 +105,7 @@
       "esp.1": ["movistar", "dazn"],
       "ita.1": { "services": ["dazn"], "verified": false },
       "usa.1": ["appletv"],
+      "uefa.champions": ["movistar"],
       "uefa.nations": { "services": ["dazn"], "teams": { "ESP": ["rtve", "dazn"] } }
     },
     "IT": {
@@ -105,6 +114,7 @@
       "esp.1": ["dazn"],
       "ita.1": ["dazn", "skyitalia"],
       "usa.1": ["appletv"],
+      "uefa.champions": ["skyitalia", "primevideo"],
       "uefa.nations": ["rai", "mediaset", "skyitalia"]
     }
   },

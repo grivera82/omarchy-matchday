@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Fixtures, live scores, tables and where-to-watch for the grivera.matchday
 Omarchy plugin. Covers LaLiga, Serie A, the Premier League, MLS and the UEFA
-Nations League.
+Nations League and Champions League.
 
 Data comes from ESPN's public site API (no key). "Where to watch" uses ESPN's
 per-match US listings when they exist and otherwise a per-country rights table
@@ -49,6 +49,7 @@ LEAGUES = [
     {"id": "ita.1", "name": "Serie A", "short": "Serie A", "country": "Italy", "color": "#1aa0e8", "logoId": "12"},
     {"id": "eng.1", "name": "Premier League", "short": "Premier", "country": "England", "color": "#a26bfa", "logoId": "23"},
     {"id": "usa.1", "name": "MLS", "short": "MLS", "country": "USA & Canada", "color": "#36c46f", "logoId": "19"},
+    {"id": "uefa.champions", "name": "UEFA Champions League", "short": "UCL", "country": "Europe", "color": "#5865f2", "logoId": "2"},
     {"id": "uefa.nations", "name": "UEFA Nations League", "short": "Nations", "country": "Europe", "color": "#f2b705",
      "logoId": "2395", "national": True},
 ]
