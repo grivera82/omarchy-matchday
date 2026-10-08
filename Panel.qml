@@ -30,7 +30,11 @@ Panel {
   // Favorites first (live, next, last, form, table), then today's and live games.
   function statusSummary() {
     var s = svc ? svc.state : null
-    if (!s || !s.favorites) return { error: "Matchday is still loading" }
+    // Report loading until the teams' own fixtures are in, so an assistant asking
+    // right after the plugin starts waits instead of answering from nothing.
+    if (!s || !s.favorites || s.status === "loading" || s.status === "starting"
+        || (s.favorites.length && s.favorites.every(function(f) { return !f.next && !f.last && !f.live })))
+      return { error: "Matchday is still loading" }
     var leagueName = {}
     ;(s.leagues || []).forEach(function(l) { leagueName[l.id] = l.name })
     function match(e) {
