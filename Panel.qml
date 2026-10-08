@@ -75,7 +75,16 @@ Panel {
       }),
       liveNow: (s.events || []).filter(function(e) { return e.state === "in" }).map(match),
       today: (s.events || []).filter(function(e) { return e.ts >= start && e.ts < end && e.state !== "in" }).slice(0, 20).map(match),
-      leagues: (s.leagues || []).filter(function(l) { return l.enabled }).map(function(l) { return l.name })
+      leagues: (s.leagues || []).filter(function(l) { return l.enabled }).map(function(l) { return l.name }),
+      // Full standings of the followed leagues, one compact line per team:
+      // "rank team played won-drawn-lost goal-difference points".
+      standings: (s.leagues || []).filter(function(l) { return l.enabled && (s.tables || {})[l.id] }).map(function(l) {
+        return { league: l.name, groups: s.tables[l.id].map(function(g) {
+          return { group: g.name || "", rows: (g.rows || []).map(function(r) {
+            return r.rank + " " + r.name + " " + r.played + "P " + r.w + "-" + r.d + "-" + r.l + " " + r.gd + " " + r.pts + "pts"
+          }) }
+        }) }
+      })
     }
   }
 
