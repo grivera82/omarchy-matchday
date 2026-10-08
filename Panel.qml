@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import Quickshell
+import Quickshell.Io
 import qs.Ui
 import qs.Commons
 
@@ -10,6 +11,70 @@ Panel {
   id: root
   moduleName: "grivera.matchday"
   ipcTarget: "grivera.matchday"
+  manageIpc: false
+
+  // Panel commands plus status(), which voice assistants (Jarvis) and scripts
+  // read: `omarchy-shell grivera.matchday status`.
+  IpcHandler {
+    target: root.ipcTarget
+    function open(): void { root.open() }
+    function close(): void { root.close() }
+    function show(): void { root.open() }
+    function hide(): void { root.close() }
+    function toggle(): void { root.toggle() }
+    function status(): string { return JSON.stringify(root.statusSummary()) }
+  }
+
+  function statusTime(ts) { return ts ? Qt.formatDateTime(new Date(ts * 1000), "ddd MMM d, h:mm AP") : "" }
+
+  // Favorites first (live, next, last, form, table), then today's and live games.
+  function statusSummary() {
+    var s = svc ? svc.state : null
+    if (!s || !s.favorites) return { error: "Matchday is still loading" }
+    var leagueName = {}
+    ;(s.leagues || []).forEach(function(l) { leagueName[l.id] = l.name })
+    function match(e) {
+      if (!e) return null
+      var o = { league: leagueName[e.league] || e.league, home: e.home.name, away: e.away.name,
+                state: e.state === "pre" ? "scheduled" : e.state === "in" ? "live" : "finished",
+                kickoff: root.statusTime(e.ts) }
+      if (e.state !== "pre") o.score = e.home.name + " " + e.home.score + ", " + e.away.name + " " + e.away.score
+      if (e.state === "in") o.clock = e.clock
+      if (e.state === "post") o.result = e.detail
+      if (e.venue) o.venue = e.venue + (e.city ? ", " + e.city : "")
+      var goals = (e.plays || []).filter(function(p) { return p.goal }).map(function(p) {
+        return p.player + " " + p.minute + (p.og ? " (own goal)" : "") + (p.pen ? " (penalty)" : "")
+      })
+      if (goals.length) o.goals = goals
+      var reds = (e.plays || []).filter(function(p) { return p.red }).map(function(p) { return p.player + " " + p.minute })
+      if (reds.length) o.redCards = reds
+      var tv = ((e.watch || {}).services || []).map(function(w) { return w.name })
+      if (tv.length) o.whereToWatch = tv
+      return o
+    }
+    var now = Date.now() / 1000
+    var today = new Date(); today.setHours(0, 0, 0, 0)
+    var start = today.getTime() / 1000, end = start + 86400
+    return {
+      now: root.statusTime(now),
+      favorites: s.favorites.map(function(f) {
+        var o = { team: f.team.name, league: leagueName[f.league] || f.league }
+        if (f.live) o.liveNow = match(f.live)
+        if (f.next) o.nextMatch = match(f.next)
+        if (f.after) o.matchAfterThat = match(f.after)
+        if (f.last) o.lastMatch = match(f.last)
+        if (f.form && f.form.length) o.recentForm = f.form.map(function(r) { return r.r + " " + r.score + (r.home ? " vs " : " at ") + r.vs })
+        if (f.standing) o.table = { position: f.standing.rank, played: f.standing.played, won: f.standing.w, drawn: f.standing.d,
+                                    lost: f.standing.l, goalDifference: f.standing.gd, points: f.standing.pts,
+                                    zone: f.standing.note ? f.standing.note.text : "" }
+        return o
+      }),
+      liveNow: (s.events || []).filter(function(e) { return e.state === "in" }).map(match),
+      today: (s.events || []).filter(function(e) { return e.ts >= start && e.ts < end && e.state !== "in" }).slice(0, 20).map(match),
+      leagues: (s.leagues || []).filter(function(l) { return l.enabled }).map(function(l) { return l.name })
+    }
+  }
+
 
   readonly property var svc: root.bar && root.bar.shell ? root.bar.shell.serviceFor("grivera.matchday") : null
   readonly property var st: svc ? svc.state : ({})

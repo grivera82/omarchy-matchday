@@ -135,6 +135,10 @@ Responses and crests are cached in `~/.cache/grivera-matchday/`, so the panel
 fills instantly after a restart. Settings are in
 `~/.local/state/grivera-matchday/config.json`.
 
+## Status for scripts and voice assistants
+
+`omarchy-shell grivera.matchday status` prints a JSON summary: your favorite teams' live, next and last matches (with where to watch), form and table position, plus today's and live games. Voice assistants such as [Jarvis](https://github.com/grivera82/omarchy-jarvis) use it to answer questions. It only reads, and works while the widget is in the bar.
+
 ## CLI
 
 ```
