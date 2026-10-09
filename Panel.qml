@@ -1084,9 +1084,11 @@ Panel {
           font.bold: true
         }
         HoverHandler { id: dotHover }
-        ToolTip.visible: dotHover.hovered
-        ToolTip.text: (modelData.home ? "vs " : "at ") + modelData.vs + "  " + modelData.score
-        ToolTip.delay: 300
+        PanelToolTip {
+          visible: dotHover.hovered
+          text: (modelData.home ? "vs " : "at ") + modelData.vs + "  " + modelData.score
+          delay: 300
+        }
       }
     }
   }
@@ -1162,6 +1164,7 @@ Panel {
   }
 
   component WatchFootnote: Text {
+    textFormat: Text.PlainText
     wrapMode: Text.WordWrap
     topPadding: Style.space(6)
     text: root.st.country === "US"
@@ -1317,8 +1320,10 @@ Panel {
           anchors.verticalCenter: parent.verticalCenter
           color: root.league(mrow.ev.league).color
           HoverHandler { id: lgHover }
-          ToolTip.visible: lgHover.hovered && mrow.showLeague
-          ToolTip.text: root.league(mrow.ev.league).name
+          PanelToolTip {
+            visible: lgHover.hovered && mrow.showLeague
+            text: root.league(mrow.ev.league).name
+          }
         }
       }
 
