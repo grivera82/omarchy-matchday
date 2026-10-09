@@ -469,6 +469,7 @@ Panel {
           spacing: Style.space(10)
 
           Text {
+            textFormat: Text.PlainText
             anchors.horizontalCenter: parent.horizontalCenter
             text: root.pitch
             color: Color.accent
@@ -476,6 +477,7 @@ Panel {
             font.pixelSize: Style.font.displayLarge * 1.4
           }
           Text {
+            textFormat: Text.PlainText
             width: parent.width
             horizontalAlignment: Text.AlignHCenter
             text: "Follow your teams"
@@ -485,6 +487,7 @@ Panel {
             font.bold: true
           }
           Text {
+            textFormat: Text.PlainText
             width: parent.width
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap
@@ -551,6 +554,7 @@ Panel {
       }
 
       Text {
+        textFormat: Text.PlainText
         readonly property var sections: root.daySections()
         visible: sections.length === 0
         width: parent.width
@@ -582,6 +586,7 @@ Panel {
             visible: modelData.firstPast
             spacing: Style.space(8)
             Text {
+              textFormat: Text.PlainText
               text: "RESULTS"
               color: root.dim
               font.family: root.fontFamily
@@ -596,6 +601,7 @@ Panel {
             height: dayHeader.implicitHeight + Style.space(6)
             Text {
               id: dayHeader
+              textFormat: Text.PlainText
               anchors.left: parent.left
               anchors.bottom: parent.bottom
               anchors.bottomMargin: Style.space(2)
@@ -607,6 +613,7 @@ Panel {
               font.letterSpacing: 1
             }
             Text {
+              textFormat: Text.PlainText
               visible: modelData.live > 0
               anchors.right: parent.right
               anchors.baseline: dayHeader.baseline
@@ -657,6 +664,7 @@ Panel {
       }
 
       Text {
+        textFormat: Text.PlainText
         visible: tableCol.groups.length === 0
         width: parent.width
         topPadding: Style.space(16)
@@ -687,8 +695,8 @@ Panel {
           Item {
             width: parent.width
             height: Style.space(20)
-            Text { x: Style.space(8); anchors.verticalCenter: parent.verticalCenter; text: "#"; color: root.dim; font.family: root.fontFamily; font.pixelSize: Style.font.caption }
-            Text { x: Style.space(56); anchors.verticalCenter: parent.verticalCenter; text: root.league(root.tableLeague).national ? "TEAM" : "CLUB"; color: root.dim; font.family: root.fontFamily; font.pixelSize: Style.font.caption; font.letterSpacing: 1 }
+            Text { textFormat: Text.PlainText; x: Style.space(8); anchors.verticalCenter: parent.verticalCenter; text: "#"; color: root.dim; font.family: root.fontFamily; font.pixelSize: Style.font.caption }
+            Text { textFormat: Text.PlainText; x: Style.space(56); anchors.verticalCenter: parent.verticalCenter; text: root.league(root.tableLeague).national ? "TEAM" : "CLUB"; color: root.dim; font.family: root.fontFamily; font.pixelSize: Style.font.caption; font.letterSpacing: 1 }
             Row {
               anchors.right: parent.right
               anchors.rightMargin: Style.space(6)
@@ -697,6 +705,7 @@ Panel {
                 model: ["P", "W", "D", "L", "GD", "PTS"]
                 Text {
                   required property var modelData
+                  textFormat: Text.PlainText
                   width: modelData === "PTS" ? tableCol.numW + Style.space(6) : tableCol.numW
                   horizontalAlignment: Text.AlignRight
                   text: modelData
@@ -733,6 +742,7 @@ Panel {
                 color: trow.modelData.note ? root.readable(trow.modelData.note.color, root.dim) : "transparent"
               }
               Text {
+                textFormat: Text.PlainText
                 x: Style.space(8)
                 width: Style.space(18)
                 anchors.verticalCenter: parent.verticalCenter
@@ -750,6 +760,7 @@ Panel {
                 size: Style.space(18)
               }
               Text {
+                textFormat: Text.PlainText
                 anchors.left: tcrest.right
                 anchors.leftMargin: Style.space(8)
                 anchors.right: nums.left
@@ -772,6 +783,7 @@ Panel {
                   Text {
                     required property var modelData
                     required property int index
+                    textFormat: Text.PlainText
                     width: index === 5 ? tableCol.numW + Style.space(6) : tableCol.numW
                     horizontalAlignment: Text.AlignRight
                     text: modelData
@@ -811,12 +823,13 @@ Panel {
             required property var modelData
             spacing: Style.space(5)
             Rectangle { width: Style.space(8); height: width; radius: width / 2; color: root.readable(modelData.color, root.dim); anchors.verticalCenter: parent.verticalCenter }
-            Text { text: modelData.text; color: root.dim; font.family: root.fontFamily; font.pixelSize: Style.font.caption }
+            Text { textFormat: Text.PlainText; text: modelData.text; color: root.dim; font.family: root.fontFamily; font.pixelSize: Style.font.caption }
           }
         }
       }
 
       Text {
+        textFormat: Text.PlainText
         width: parent.width
         topPadding: Style.space(2)
         text: "Click a " + (root.league(root.tableLeague).national ? "team" : "club") + " to follow or unfollow it."
@@ -849,6 +862,7 @@ Panel {
       }
 
       Text {
+        textFormat: Text.PlainText
         visible: teamsCol.teams.length === 0
         width: parent.width
         horizontalAlignment: Text.AlignHCenter
@@ -892,6 +906,7 @@ Panel {
             }
 
             Text {
+              textFormat: Text.PlainText
               anchors.bottom: parent.bottom
               anchors.bottomMargin: Style.space(8)
               anchors.horizontalCenter: parent.horizontalCenter
@@ -906,6 +921,7 @@ Panel {
             }
 
             Text {
+              textFormat: Text.PlainText
               visible: tile.on
               anchors.top: parent.top
               anchors.right: parent.right
@@ -941,6 +957,7 @@ Panel {
       }
 
       Text {
+        textFormat: Text.PlainText
         visible: root.st.countryKnown === false
         width: parent.width
         wrapMode: Text.WordWrap
@@ -1017,6 +1034,7 @@ Panel {
       color: root.teamColor(crest.team)
       opacity: 0.85
       Text {
+        textFormat: Text.PlainText
         anchors.centerIn: parent
         text: (crest.team.abbr || crest.team.short || "?").slice(0, 3)
         color: Color.popups.background
@@ -1037,6 +1055,7 @@ Panel {
       anchors.verticalCenter: parent.verticalCenter
     }
     Text {
+      textFormat: Text.PlainText
       text: parent.lg.short
       color: root.dim
       font.family: root.fontFamily
@@ -1056,6 +1075,7 @@ Panel {
         radius: Style.space(4)
         color: modelData.r === "W" ? root.win : modelData.r === "L" ? root.urgent : Qt.rgba(root.fg.r, root.fg.g, root.fg.b, 0.25)
         Text {
+          textFormat: Text.PlainText
           anchors.centerIn: parent
           text: modelData.r
           color: modelData.r === "D" ? root.fg : "#ffffff"
@@ -1102,6 +1122,7 @@ Panel {
             anchors.verticalCenter: parent.verticalCenter
           }
           Text {
+            textFormat: Text.PlainText
             text: chip.modelData.name
             color: root.fg
             font.family: root.fontFamily
@@ -1109,6 +1130,7 @@ Panel {
             font.bold: !chips.compact
           }
           Text {
+            textFormat: Text.PlainText
             visible: !!chip.modelData.lang && !chips.compact
             text: (chip.modelData.lang || "").toUpperCase()
             color: root.dim
@@ -1117,6 +1139,7 @@ Panel {
             anchors.verticalCenter: parent.verticalCenter
           }
           Text {
+            textFormat: Text.PlainText
             visible: chip.modelData.kind === "free" && !chips.compact
             text: "FREE"
             color: root.win
@@ -1389,6 +1412,7 @@ Panel {
           anchors.verticalCenter: parent.verticalCenter
           spacing: Style.space(2)
           Text {
+            textFormat: Text.PlainText
             width: parent.width
             text: card.fav.team.name || ""
             elide: Text.ElideRight
@@ -1401,6 +1425,7 @@ Panel {
             spacing: Style.space(8)
             LeagueTag { leagueId: card.fav.league }
             Text {
+              textFormat: Text.PlainText
               visible: !!card.fav.standing
               text: card.fav.standing ? root.ordinal(card.fav.standing.rank) + (card.fav.standing.group ? " in " + card.fav.standing.group.replace(/ Conference$/, "") : "") + "  ·  " + card.fav.standing.pts + " pts  ·  " + card.fav.standing.played + " played" : ""
               color: root.dim
@@ -1436,6 +1461,7 @@ Panel {
           font.letterSpacing: 1
         }
         Text {
+          textFormat: Text.PlainText
           anchors.right: parent.right
           anchors.baseline: kicker.baseline
           visible: !!card.ev && !card.live
@@ -1503,6 +1529,7 @@ Panel {
           implicitHeight: watchLabel.implicitHeight
           Text {
             id: watchLabel
+            textFormat: Text.PlainText
             text: "WHERE TO WATCH"
             color: root.fg
             font.family: root.fontFamily
@@ -1511,6 +1538,7 @@ Panel {
             font.letterSpacing: 1
           }
           Text {
+            textFormat: Text.PlainText
             anchors.right: parent.right
             anchors.baseline: watchLabel.baseline
             text: !card.ev || !card.ev.watch ? ""
@@ -1529,6 +1557,7 @@ Panel {
       }
 
       Text {
+        textFormat: Text.PlainText
         visible: !card.ev
         width: parent.width
         horizontalAlignment: Text.AlignHCenter
@@ -1551,6 +1580,7 @@ Panel {
           spacing: Style.space(6)
           readonly property var r: card.fav.form && card.fav.form.length ? card.fav.form[card.fav.form.length - 1] : null
           Text {
+            textFormat: Text.PlainText
             text: "LAST"
             color: root.dim
             font.family: root.fontFamily
@@ -1564,6 +1594,7 @@ Panel {
             anchors.verticalCenter: parent.verticalCenter
             color: !lastRow.r ? "transparent" : lastRow.r.r === "W" ? root.win : lastRow.r.r === "L" ? root.urgent : Qt.rgba(root.fg.r, root.fg.g, root.fg.b, 0.25)
             Text {
+              textFormat: Text.PlainText
               anchors.centerIn: parent
               text: lastRow.r ? lastRow.r.r : ""
               color: lastRow.r && lastRow.r.r === "D" ? root.fg : "#ffffff"
@@ -1573,6 +1604,7 @@ Panel {
             }
           }
           Text {
+            textFormat: Text.PlainText
             text: lastRow.r ? lastRow.r.score + (lastRow.r.home ? " vs " : " at ") + lastRow.r.vs : ""
             color: root.fg
             font.family: root.fontFamily
@@ -1589,6 +1621,7 @@ Panel {
 
         Text {
           id: afterText
+          textFormat: Text.PlainText
           anchors.right: parent.right
           anchors.verticalCenter: parent.verticalCenter
           visible: !!card.fav.after
