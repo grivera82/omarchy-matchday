@@ -20,6 +20,7 @@ import datetime
 import gzip
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -508,7 +509,9 @@ class Notifier:
             args += ["-w", "-A", "default=Open match"]
         if key in self.ids:
             args += ["-r", str(self.ids[key])]
-        args += [summary, body]
+        # "--" so ESPN text starting with "-" can't be read as an option
+        # (an injected -h could add an omarchy-exec-argv hint).
+        args += ["--", summary, body]
 
         def run():
             try:
@@ -527,6 +530,8 @@ class Notifier:
 
 
 def open_url(url):
+    if not url or not re.match(r"^https?://", url):
+        return False
     for cmd in (["omarchy-launch-webapp", url], ["xdg-open", url]):
         if shutil.which(cmd[0]):
             subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, start_new_session=True)
