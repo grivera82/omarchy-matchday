@@ -17,7 +17,6 @@ Standard library only.
 
 import concurrent.futures
 import datetime
-import gzip
 import json
 import os
 import re
@@ -28,6 +27,7 @@ import threading
 import time
 import urllib.error
 import urllib.request
+import zlib
 
 HOME = os.path.expanduser("~")
 STATE_DIR = os.path.join(os.environ.get("XDG_STATE_HOME") or os.path.join(HOME, ".local/state"), "grivera-matchday")
@@ -91,12 +91,24 @@ def save_json(path, data, indent=None):
     os.replace(tmp, path)
 
 
+MAX_BODY = 16 * 1024 * 1024   # ESPN scoreboards run ~1 MB, logos far less
+
+
+def gunzip(data, limit=MAX_BODY):
+    out = zlib.decompressobj(31).decompress(data, limit + 1)
+    if len(out) > limit:
+        raise ValueError("response too large")
+    return out
+
+
 def http_get(url, timeout=12):
     req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept-Encoding": "gzip"})
     with urllib.request.urlopen(req, timeout=timeout) as r:
-        data = r.read()
+        data = r.read(MAX_BODY + 1)
+    if len(data) > MAX_BODY:
+        raise ValueError("response too large")
     if data[:2] == b"\x1f\x8b":
-        data = gzip.decompress(data)
+        data = gunzip(data)
     return data
 
 
