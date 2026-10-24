@@ -1,5 +1,9 @@
 # <img src="icon.svg" width="44" height="44" alt=""> Matchday (grivera.matchday)
 
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Omarchy plugin marketplace](https://img.shields.io/badge/Omarchy-plugin%20marketplace-2f6f4f.svg)](https://plugins.omarchy.org/plugin.html?id=grivera.matchday)
+
+> Part of the [Omarchy plugin marketplace](https://plugins.omarchy.org/plugin.html?id=grivera.matchday), listed as **Matchday** (plugin ID `grivera.matchday`). The marketplace registry lives at [omacom/omarchy-plugin-marketplace](https://github.com/omacom/omarchy-plugin-marketplace).
+
 A **soccer plugin for the Omarchy bar**: live scores, fixtures, standings and
 **where to watch each match in your country**. Follow your clubs and national
 teams across **LaLiga, Serie A, Premier League, MLS, UEFA Nations League and
@@ -38,6 +42,18 @@ rm -rf ~/.cache/grivera-matchday ~/.local/state/grivera-matchday   # optional: c
 The plugin writes only to those two folders. It reads
 `~/.config/grivera-matchday/broadcasters.json` if you create one, and never writes
 to it.
+
+### Manual install
+
+To install without the plugin manager, clone the repository into Omarchy's
+plugin folder, check it with Omarchy's validator, then rescan and enable it:
+
+```
+git clone https://github.com/grivera82/omarchy-matchday.git ~/.config/omarchy/plugins/grivera.matchday
+omarchy plugin validate ~/.config/omarchy/plugins/grivera.matchday
+omarchy-shell shell rescanPlugins
+omarchy plugin enable grivera.matchday --section right
+```
 
 ### Dependencies
 
@@ -146,3 +162,7 @@ bin/matchday status [--json]   # your clubs' next matches + where to watch, toda
 bin/matchday next              # one line, handy for scripts
 bin/matchday daemon            # what the shell runs: JSON lines in and out
 ```
+
+## License
+
+[MIT](LICENSE)
